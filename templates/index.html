@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        <link
+            href="{{ url_for('static', filename='output.css') }}"
+            rel="stylesheet"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body id="mainBody">
+        <div class="bg-sky-500 h-7"></div>
+    </body>
+    <script>
+        var data = [];
+    </script>
+
+    <script src="{{ url_for('static', filename='output/ui.js') }}"></script>
+    <script src="{{ url_for('static', filename='output/canvas.js') }}"></script>
+</html>
