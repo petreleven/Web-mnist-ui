@@ -29,7 +29,7 @@ class Layer:
         output = np.dot(self.weights, inputs) + self.bias
         return self.activation(output)
 
-    def activation(self, activation_input: NDArray) -> NDArray[float]:
+    def activation(self, activation_input: NDArray) -> NDArray:
         # sigmoid
         if self.type_of_activation == "sigmoid":
             return 1 / (1 + np.exp(-activation_input))
@@ -201,9 +201,9 @@ class NeuralNetwork:
 def classify(image : NDArray):
     import numpy as np
     import matplotlib.pyplot as plt
-    file = np.load("mnist.npz")
+    file = np.load("mnistfinal.npz")
 
-    neuralnet: NeuralNetwork = NeuralNetwork(    nodes_per_layer=[28 * 28, 40,10], activations=[ "relu","softmax"])
+    neuralnet: NeuralNetwork = NeuralNetwork(    nodes_per_layer=[28 * 28, 60,10], activations=[ "relu","softmax"])
     neuralnet.layers[0].weights = file["weights_1"]
     neuralnet.layers[0].bias = file["bias_1"]
     neuralnet.layers[1].weights = file["weights_2"]
@@ -211,7 +211,7 @@ def classify(image : NDArray):
     image_selection = image
 
     image_selection_flat_array = image_selection.reshape(784)
-    output = np.round(neuralnet.forward_propagate(image_selection_flat_array), 4)
+    output = neuralnet.forward_propagate(image_selection_flat_array)
     print(output)
     print(f"I see a {np.argmax(output)}")
     return output

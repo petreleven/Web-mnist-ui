@@ -21,6 +21,7 @@ async def home():
 async def data():
     data = await request.get_json()
     arr=mnist_preprocess(data)
+    print(arr)
     output = classify(arr)
     predictions = {}
     for i in range(10):
